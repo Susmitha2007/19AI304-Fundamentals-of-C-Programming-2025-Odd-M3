@@ -115,61 +115,101 @@ Thus, the program was implemented and executed successfully, and the required ou
 #include <stdio.h>
 
 int main() {
+
     int i, j, k, m, min, max;
+    
     int pos[2][2];
+    
     printf("Enter the order of the square matrix: ");
+    
     scanf("%d", &m);
 
     int matrix[m][m];
+    
     printf("Enter matrix elements:\n");
+    
     for (i = 0; i < m; i++) {
+    
         for (j = 0; j < m; j++) {
+        
             scanf("%d", &matrix[i][j]);
         }
     }
     printf("Matrix:\n");
+    
     for (i = 0; i < m; i++) {
+    
         for (j = 0; j < m; j++) {
+        
             printf("%d ", matrix[i][j]);
+            
         }
         printf("\n");
+        
     }
     int saddleFound = 0;
+    
     int saddleValue;
 
     for (i = 0; i < m; i++) {
+    
         min = matrix[i][0];
+        
         pos[0][0] = i; 
+        
         pos[0][1] = 0; 
+        
         for (j = 1; j < m; j++) {
+        
             if (matrix[i][j] < min) {
+            
                 min = matrix[i][j];
+                
                 pos[0][1] = j;
+                
             }
         }
-
+        
         j = pos[0][1]; 
+        
         max = matrix[0][j];
+        
         pos[1][0] = 0;
+        
         pos[1][1] = j; 
+        
         for (k = 1; k < m; k++) {
+        
             if (matrix[k][j] > max) {
+            
                 max = matrix[k][j];
+                
                 pos[1][0] = k;
+                
             }
+            
         }
         if (min == max && pos[0][0] == pos[1][0] && pos[0][1] == pos[1][1]) {
+        
             saddleFound = 1;
+            
             saddleValue = min;
+            
             printf("Saddle point found: %d at position (%d, %d)\n", saddleValue, pos[0][0], pos[0][1]);
+            
         }
+        
     }
 
     if (!saddleFound) {
+    
         printf("No saddle point found in the matrix.\n");
+        
     }
+    
 
     return 0;
+    
 }
 
 # Output:
@@ -212,20 +252,35 @@ Thus, the program was implemented and executed successfully, and the required ou
 # Program:
 
 #include <stdio.h>
+
 int main() {
+
     char s[100], d[100];
+    
     int i, len = 0, j;
+    
     printf("Enter a string: ");
+    
     scanf("%[^\n]s", s);
+    
     for (i = 0; s[i] != '\0'; i++) {
+    
         len++;
+        
     }
+    
     j = 0;
+    
     for (i = len - 1; i >= 0; i--) {
+    
         d[j] = s[i];
+        
         j++;
+        
     }
+    
     d[j] = '\0';
+    
     printf("Reversed string: %s\n", d);
 
     return 0;
@@ -271,26 +326,45 @@ Thus, the program was implemented and executed successfully, and the required ou
 # Program:
 
 #include <stdio.h>
+
 #include <string.h>
 
 int main() {
+
     char s[100];
+    
     int visited[256] = {0}; 
+    
     int i, j, n, count;
+    
     printf("Enter a string: ");
+    
     scanf("%[^\n]", s);
+    
     n = strlen(s);
+    
     for (i = 0; i < n; i++) {
+    
         if (visited[(unsigned char)s[i]] == 0) {
+        
             count = 0;
+            
             for (j = 0; j < n; j++) {
+            
                 if (s[i] == s[j]) {
+                
                     count++;
+                    
                 }
+                
             }
+            
             printf("'%c' : %d\n", s[i], count);
+            
             visited[(unsigned char)s[i]] = 1;
+            
         }
+        
     }
 
     return 0;
@@ -336,41 +410,73 @@ Thus, the program was implemented and executed successfully, and the required ou
 # Program:
 
 #include <stdio.h>
+
 #include <string.h>
 
 int main() {
+
     char str[200], words[50][20];
+    
     int i = 0, j = 0, k = 0, l = 0, n = 0;
+    
     printf("Enter a string: ");
+    
     scanf("%[^\n]s", str);
+    
     while (str[i] != '\0') {
+    
         if (str[i] == ' ') {
+        
             words[k][l] = '\0';
+            
             k++;
+            
             l = 0;
+            
         } else {
+        
             words[k][l] = str[i];
+            
             l++;
+            
         }
+        
         i++;
+        
     }
     words[k][l] = '\0';
+    
     n = k + 1;
+    
     for (i = 0; i < n; i++) {
+    
         if (words[i][0] == '\0')
+        
             continue;
         for (j = i + 1; j < n; j++) {
+        
             if (strcmp(words[i], words[j]) == 0) {
+
                 words[j][0] = '\0'; 
+                
             }
+            
         }
+        
     }
+    
     printf("String with unique words:\n");
+    
     for (i = 0; i < n; i++) {
+    
         if (words[i][0] != '\0') {
+        
             printf("%s ", words[i]);
+            
         }
+        
     }
+    
     printf("\n");
 
     return 0;
